@@ -1,52 +1,51 @@
 import random       
 import os
-from this import s       #os.system('cls||clear')
 from game_data import data
 from art import logo,vs
 
-#random data from game_data and add to above list
-def random_first_data():
-    first_data.append(random.choice(data))
+def format_data(account):
+    """Fotmat thr account data into printable format."""
+    account_name = account["name"]
+    account_descr = account["description"]
+    account_country = account["country"]
+    return (f"{account_name}, a {account_descr}, from {account_country}")
 
-def random_second_data():
-    second_data.append(random.choice(data))
+def check_answer(guess,a_follower,b_follower):
+    """Use if statement to check if user is correct and return if they got right"""
+    if a_follower > b_follower:
+        return guess == "a" #True ถ้า guess เป็น a    
+    else:
+        return guess == "b" #False ถ้า guess เป็น b    
 
-#return answer that have more follower (A or B) and amount of follower
-def who_has_more_follower(first_data,second_data):
-    compare_a = first_data[0]['follower_count'] 
-    against_b = second_data[0]['follower_count'] 
-    if compare_a > against_b:
-        list_of_more_follower = ["A",compare_a]
-        return list_of_more_follower,first_data
-    elif compare_a < against_b:
-        list_of_more_follower = ["B",against_b]
-        return list_of_more_follower,second_data
-
-first_data = []
-second_data = []
-current_score = 0
-random_first_data()
-random_second_data()
-wrong_answer = False
 print(logo)
-while not wrong_answer:
-    more_follower = who_has_more_follower(first_data,second_data)
+score = 0
 
-    print(f"Compare A: {first_data[0]['name']}, a {first_data[0]['description']}, from {first_data[0]['country']} ")
+account_b = random.choice(data) #เพื่อไม่ให้เข้าไป loop ในเกม
+
+game_should_continue = True
+while game_should_continue:
+    #Make account at B to A
+    account_a = account_b
+    account_b = random.choice(data)
+    if account_a == account_b:
+        account_b = random.choice(data)
+
+    print(f"Compare A : {format_data(account_a)}")
     print(vs)
-    print(f"Against B: {second_data[0]['name']}, a {second_data[0]['description']}, from {second_data[0]['country']} ")
+    print(f"Against B : {format_data(account_b)}")
+    guess = input("Who has more followers? 'A' or 'B' : ").lower()
 
-    print(more_follower)
+    a_follower_count = account_a["follower_count"]
+    b_follower_count = account_b["follower_count"]
 
-    user_answer = input("Who has more followers,Type 'A' or 'B' : ").upper()
-    if user_answer == more_follower[0][0]:
-        os.system('cls||clear')
-        print(f"You're right! Current score : {current_score+1}")
-        first_data = more_follower[1]
-        random_second_data()
-    elif user_answer != more_follower[0][0]:
-        print(f"That's wrong! Your score is {current_score+0}")
-        wrong_answer = True
+    is_correct = check_answer(guess,a_follower_count,b_follower_count)
 
+    os.system('cls||clear')
+    if is_correct:
+        score += 1
+        print(f"You're right!, Current score: {score}.")
+    else:
+        print(f"Sorry, that's wrong. Final score: {score}.")
+        game_should_continue = False
 
 
