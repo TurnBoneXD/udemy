@@ -10,7 +10,8 @@ def is_leap(year):
   else:
     return False #Not leap year
 
-def days_in_month(year_input,month_input):
+def days_in_month(year_input,month_input): 
+    """Enter the years and months to check the total days of the month."""
     month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]  
     if is_leap(year_input) == True: #Leap year
         if month_input == 2:
@@ -23,4 +24,6 @@ year = int(input("Enter a year: "))
 month = int(input("Enter a month: "))
 days = days_in_month(year, month)
 print(days)
+
+
 

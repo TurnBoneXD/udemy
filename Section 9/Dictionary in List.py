@@ -14,12 +14,13 @@ travel_log = [
 
 #TODO: Write the function that will allow new countries
 #to be added to the travel_log. 👇
-add_new_dictionary = {}
+
 def add_new_country(country,visits,cities):
-   add_new_dictionary["country"] = country
-   add_new_dictionary["visits"] = visits
-   add_new_dictionary["cities"] = cities
-   travel_log.append(add_new_dictionary)
+    add_new_dictionary = {}
+    add_new_dictionary["country"] = country
+    add_new_dictionary["visits"] = visits
+    add_new_dictionary["cities"] = cities
+    travel_log.append(add_new_dictionary)
 
 
 #🚨 Do not change the code below

@@ -18,7 +18,7 @@ for name in student_scores:
     elif student_scores[name] > 70 :
         student_grades[name] = "Acceptable"
     else:
-        student_grades[name] = "Fail"
+        student_grades[name] = "Fail" 
     
 
 # 🚨 Don't change the code below 👇

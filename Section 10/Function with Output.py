@@ -1,6 +1,6 @@
 def fotmat_name(f_name,l_name):
     if f_name == "" or l_name == "":
-        return
+        return "You didn't provides valid inputs."
     name = f_name.title()
     surname = l_name.title()
     return f"{name} {surname}"
