@@ -1,5 +1,2 @@
-a=1
-b=(1,2)
-
-if a == 1 and b == 1 or b == 4:
-    print(True)
+list = [{"quiz":"1111","ans":"true"},{"quiz":"2222","ans":"false"}]
+print(list[1]["ans"])
